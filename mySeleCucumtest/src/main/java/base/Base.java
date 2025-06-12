@@ -2,13 +2,14 @@ package base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base {
     public static WebDriver Driver;
 
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-        Driver = new ChromeDriver();
+        WebDriverManager.chromedriver().setup();
+        Driver = new ChromeDriver(); // assign to static variable
         Driver.get("file:///absolute/path/to/testpage/login.html");
     }
 
