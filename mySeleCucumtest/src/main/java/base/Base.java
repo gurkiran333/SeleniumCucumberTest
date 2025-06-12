@@ -10,7 +10,7 @@ public class Base {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         Driver = new ChromeDriver(); // assign to static variable
-        Driver.get("file:///absolute/path/to/testpage/login.html");
+        Driver.get("file:///D:/DevOps/Projects/mySeleCucumtest/testpage/login.html");
     }
 
     public void tearDown() {
