@@ -8,9 +8,9 @@ public class Base {
     public static WebDriver Driver;
 
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        Driver = new ChromeDriver(); // assign to static variable
-        Driver.get("file:///D:/DevOps/Projects/mySeleCucumtest/testpage/login.html");
+        WebDriverManager.chromedriver().setup(); // This sets up ChromeDriver properly
+        Driver = new ChromeDriver(); // Corrected this line
+        Driver.get("file:///D:/DevOps/Projects/mySeleCucumtest/testpage/login.html"); // Use correct path
     }
 
     public void tearDown() {
