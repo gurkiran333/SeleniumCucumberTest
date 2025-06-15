@@ -11,7 +11,7 @@ public class Base {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();  
         driver.manage().window().maximize(); 
-        driver.get("file:///D:/DevOps/Projects/mySeleCucumtest/testpage/login.html");
+        driver.get("file:///D://DevOps//Projects//mySeleCucumtest//testpage//login.html");
     }
 
     public void tearDown() {
