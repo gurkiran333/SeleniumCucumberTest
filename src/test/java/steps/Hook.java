@@ -6,7 +6,7 @@ import base.Base;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class Hooks {
+public class Hook {
 
     @Before
     public void setUp() {
