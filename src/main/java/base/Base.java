@@ -8,15 +8,15 @@ public class Base {
     public static WebDriver driver;
 
     public void setUp() {
-    WebDriverManager.chromedriver().setup();
-    Driver = new ChromeDriver();
-    Driver.manage().window().maximize();  //  optional but recommended
-    Driver.get("file:///D:/DevOps/Projects/mySeleCucumtest/testpage/login.html");
-}
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();  
+        driver.manage().window().maximize(); 
+        driver.get("file:///D:/DevOps/Projects/mySeleCucumtest/testpage/login.html");
+    }
 
     public void tearDown() {
-        if (Driver != null) {
-            Driver.quit(); //  properly closes the browser
+        if (driver != null) {   
+            driver.quit();
         }
     }
 }
