@@ -1,22 +1,12 @@
-package base;
+public void setUp() {
+    WebDriverManager.chromedriver().setup();
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
+    ChromeOptions options = new ChromeOptions();
+    // options.addArguments("--headless=new");
+    options.addArguments("--no-sandbox");
+    options.addArguments("--disable-dev-shm-usage");
 
-public class Base {
-    public static WebDriver driver;
-
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();  
-        driver.manage().window().maximize(); 
-        driver.get("file:///D://DevOps//Projects//mySeleCucumtest//testpage//login.html");
-    }
-
-    public void tearDown() {
-        if (driver != null) {   
-            driver.quit();
-        }
-    }
+    driver = new ChromeDriver(options);
+    driver.manage().window().maximize();
+    driver.get("file:///D://DevOps//Projects//mySeleCucumtest//testpage//login.html");
 }
