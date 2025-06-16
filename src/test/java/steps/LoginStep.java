@@ -15,10 +15,7 @@ public class LoginStep extends Base {
     @Then("I should see the userform page")
     public void iShouldSeeTheUserformPage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        // Wait until the element is present and visible
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Initial")));
-
         Assert.assertTrue("User form is not visible", element.isDisplayed());
     }
 }
