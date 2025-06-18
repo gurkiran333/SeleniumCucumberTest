@@ -4,12 +4,16 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import io.cucumber.java.en.Then;
 import base.Base;
-
+import org.junit.Assert;
 import java.time.Duration;
 
 public class LoginStep {
 
-    WebDriver driver = Base.driver;
+    WebDriver driver;
+
+    public LoginStep() {
+        this.driver = new Base().setUp(); // Will start new browser instance (not recommended for every step)
+    }
 
     @Then("Login with correct username and password")
     public void login_with_correct_username_and_password() {
@@ -27,10 +31,9 @@ public class LoginStep {
     public void i_should_see_the_userform_page() {
         String expectedTitle = "User Form";
         String actualTitle = driver.getTitle();
-
         System.out.println("Verifying page title...");
-        if (!actualTitle.contains(expectedTitle)) {
-            throw new AssertionError("Expected page title to contain '" + expectedTitle + "' but was '" + actualTitle + "'");
-        }
+
+        Assert.assertTrue("Expected page title to contain '" + expectedTitle + "' but was '" + actualTitle + "'",
+                actualTitle.contains(expectedTitle));
     }
 }
