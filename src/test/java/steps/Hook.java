@@ -1,18 +1,23 @@
-package steps;
+package hooks;
 
-import base.Base;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import io.cucumber.java.Before;
 import io.cucumber.java.After;
 
-public class Hook extends Base {
+public class Hooks {
+    public static WebDriver driver;
 
     @Before
-    public void initializeDriver() {
-        setUp(); // uses setup method from Base.java
+    public void setUp() {
+        driver = new ChromeDriver();  // Make sure chromedriver is set in PATH
+        driver.manage().window().maximize();
     }
 
     @After
-    public void closeDriver() {
-        tearDown(); // uses teardown method from Base.java
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
