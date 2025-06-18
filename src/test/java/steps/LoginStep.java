@@ -9,11 +9,7 @@ import java.time.Duration;
 
 public class LoginStep {
 
-    WebDriver driver;
-
-    public LoginStep() {
-        this.driver = new Base().setUp(); // Will start new browser instance (not recommended for every step)
-    }
+    WebDriver driver = Base.driver;
 
     @Then("Login with correct username and password")
     public void login_with_correct_username_and_password() {
