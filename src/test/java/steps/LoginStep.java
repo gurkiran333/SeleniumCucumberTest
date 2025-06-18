@@ -4,7 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import io.cucumber.java.en.Then;
 import java.time.Duration;
-import hooks.Hooks; // Import this
+import hooks.Hooks;
 
 public class LoginStep {
 
@@ -24,5 +24,18 @@ public class LoginStep {
 
         WebElement initialField = driver.findElement(By.id("Initial"));
         initialField.sendKeys("your_username");
+    }
+
+    @Then("I should see the userform page")
+    public void i_should_see_the_userform_page() {
+        System.out.println("Verifying userform page is displayed");
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("userform")));
+
+        String title = driver.getTitle();
+        if (!title.toLowerCase().contains("userform")) {
+            throw new AssertionError("Userform page not displayed. Current title: " + title);
+        }
     }
 }
