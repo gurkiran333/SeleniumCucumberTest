@@ -3,13 +3,13 @@ package steps;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import io.cucumber.java.en.Then;
-import base.Base;  // not from hooks
+import base.Base;
 
 import java.time.Duration;
 
 public class LoginStep {
 
-    WebDriver driver = Base.driver; // Accessing static driver directly
+    WebDriver driver = Base.driver;
 
     @Then("Login with correct username and password")
     public void login_with_correct_username_and_password() {
@@ -21,7 +21,16 @@ public class LoginStep {
 
         WebElement initialField = driver.findElement(By.id("Initial"));
         initialField.sendKeys("your_username");
+    }
 
-        // Add password and click login as needed
+    @Then("I should see the userform page")
+    public void i_should_see_the_userform_page() {
+        String expectedTitle = "User Form";
+        String actualTitle = driver.getTitle();
+
+        System.out.println("Verifying page title...");
+        if (!actualTitle.contains(expectedTitle)) {
+            throw new AssertionError("Expected page title to contain '" + expectedTitle + "' but was '" + actualTitle + "'");
+        }
     }
 }
