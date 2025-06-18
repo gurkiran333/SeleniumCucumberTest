@@ -1,3 +1,4 @@
+// File: Hooks.java
 package hooks;
 
 import base.Base;
@@ -11,11 +12,11 @@ public class Hooks extends Base {
 
     @Before
     public void initializeDriver() {
-        driver = setUp();  // <-- assign driver to static field
+        driver = setUp();
     }
 
     @After
     public void closeDriver() {
-        tearDown();  // Close driver
+        tearDown();
     }
 }
