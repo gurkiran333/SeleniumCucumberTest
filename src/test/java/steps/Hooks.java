@@ -8,11 +8,11 @@ public class Hooks extends Base {
 
     @Before
     public void initializeDriver() {
-        setUp();  // initializes static driver
+        setUp();
     }
 
     @After
     public void closeDriver() {
-        tearDown();  // cleans up driver
+        tearDown();
     }
 }
