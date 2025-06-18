@@ -5,13 +5,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Base {
 
-    protected WebDriver driver;
+    // Make this static if you want to access it from Hooks or Step classes without creating a new object
+    public static WebDriver driver;
 
     public WebDriver setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        //  Fix the path: remove "path/to/" and use actual path to ChromeDriver
+        System.setProperty("webdriver.chrome.driver", "D:\\DevOps\\Projects\\SeleniumCucumberTest\\drivers\\chromedriver.exe");
+
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("file:///D://DevOps//Projects//mySeleCucumtest//testpage//login.html");
+
+        //  Make sure the HTML file path is correct
+        driver.get("file:///D:/DevOps/Projects/mySeleCucumtest/testpage/login.html");
+
         return driver;
     }
 
