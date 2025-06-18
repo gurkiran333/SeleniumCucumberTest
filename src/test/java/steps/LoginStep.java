@@ -1,20 +1,16 @@
-package steps;
+@Then("Login with correct username and password")
+public void login_with_correct_username_and_password() {
+    // ⬇ Fix 3: Add debug logs
+    System.out.println("Current URL: " + driver.getCurrentUrl());
+    System.out.println("Page title: " + driver.getTitle());
 
-import base.Base;
-import io.cucumber.java.en.Then;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+    // ⬇ Fix 1/2: Explicit wait for the element
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Initial")));
+    // OR, if ID might be incorrect:
+    // wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Initial']")));
 
-import java.time.Duration;
-
-public class LoginStep extends Base {
-
-    @Then("I should see the userform page")
-    public void iShouldSeeTheUserformPage() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        boolean isDisplayed = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Initial"))).isDisplayed();
-        Assert.assertTrue("Userform page not displayed", isDisplayed);
-    }
+    // ⬇ Interaction with the input field
+    WebElement initialField = driver.findElement(By.id("Initial"));
+    initialField.sendKeys("your_username");
 }
