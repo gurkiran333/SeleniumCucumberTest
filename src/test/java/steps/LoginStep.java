@@ -9,10 +9,12 @@ import java.time.Duration;
 
 public class LoginStep {
 
-    WebDriver driver = Base.driver;
+    WebDriver driver;
 
     @Then("Login with correct username and password")
     public void login_with_correct_username_and_password() {
+        driver = Base.driver; // Assign after Hooks sets it
+
         System.out.println("Current URL: " + driver.getCurrentUrl());
         System.out.println("Page title: " + driver.getTitle());
 
@@ -20,11 +22,13 @@ public class LoginStep {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Initial")));
 
         WebElement initialField = driver.findElement(By.id("Initial"));
-        initialField.sendKeys("your_username");
+        initialField.sendKeys("your_username");  // Replace with actual username
     }
 
     @Then("I should see the userform page")
     public void i_should_see_the_userform_page() {
+        driver = Base.driver; // Assign again in case this runs in a separate context
+
         String expectedTitle = "User Form";
         String actualTitle = driver.getTitle();
         System.out.println("Verifying page title...");
