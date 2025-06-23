@@ -13,27 +13,28 @@ public class LoginStep {
 
     @Then("Login with correct username and password")
     public void login_with_correct_username_and_password() {
-        driver = Base.driver; // Assign after Hooks sets it
+        driver = Base.driver;
 
         System.out.println("Current URL: " + driver.getCurrentUrl());
         System.out.println("Page title: " + driver.getTitle());
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Initial")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
 
-        WebElement initialField = driver.findElement(By.id("Initial"));
-        initialField.sendKeys("your_username");  // Replace with actual username
+        driver.findElement(By.id("username")).sendKeys("testuser");
+        driver.findElement(By.id("password")).sendKeys("testpass");
+        driver.findElement(By.id("loginBtn")).click();
     }
 
     @Then("I should see the userform page")
     public void i_should_see_the_userform_page() {
-        driver = Base.driver; // Assign again in case this runs in a separate context
+        driver = Base.driver;
 
-        String expectedTitle = "Login Page";
         String actualTitle = driver.getTitle();
-        System.out.println("Verifying page title...");
+        System.out.println("Page title: " + actualTitle);
 
-        Assert.assertTrue("Expected page title to contain '" + expectedTitle + "' but was '" + actualTitle + "'",
-                actualTitle.contains(expectedTitle));
+        Assert.assertTrue("Page title is empty or missing", actualTitle != null && !actualTitle.isEmpty());
+        Assert.assertTrue("Expected title to contain 'Login Page' but got: " + actualTitle,
+                actualTitle.contains("Login Page"));
     }
 }
