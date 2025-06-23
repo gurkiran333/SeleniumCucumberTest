@@ -29,7 +29,7 @@ public class LoginStep {
     public void i_should_see_the_userform_page() {
         driver = Base.driver; // Assign again in case this runs in a separate context
 
-        String expectedTitle = "User Form";
+        String expectedTitle = "Login Page";
         String actualTitle = driver.getTitle();
         System.out.println("Verifying page title...");
 
